@@ -17,4 +17,4 @@ sed -i 's/192.168.6.1/192.168.233.1/g' package/base-files/files/bin/config_gener
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Modify hostname
-sed -i 's/ImmortalWrt/HarukaNet-Router/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/TR3000/g' package/base-files/files/bin/config_generate
