@@ -14,4 +14,4 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git mimic https://github.com/hack3ric/mimic;openwrt-25.12' >>feeds.conf.default
+echo 'src-git mimic https://github.com/hack3ric/mimic;openwrt' >>feeds.conf.default
