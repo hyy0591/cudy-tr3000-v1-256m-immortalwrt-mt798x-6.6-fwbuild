@@ -11,10 +11,27 @@
 #
 
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.233.1/g' package/base-files/files/bin/config_generate
 
 # Modify default theme
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+
+# Modify mimic Makefile
+if [ -f  feeds/mimic/net/mimic/Makefile ]; then
+    echo "[mimic] Makefile of mimic exists!"
+else
+    tree feeds
+fi
+sed -i "s/PKG_VERSION :=.*/PKG_VERSION := 0.7.1.20260615/g" feeds/mimic/net/mimic/Makefile
+sed -i "s/PKG_RELEASE :=.*/PKG_RELEASE := 1/g" feeds/mimic/net/mimic/Makefile
+sed -i "s/PKG_SOURCE_VERSION :=.*/PKG_SOURCE_VERSION := 96e0a316ec9b0b971866edada7bb3ccefe5a2d84/g" feeds/mimic/net/mimic/Makefile
+sed -i "s/PKG_HASH := .*/PKG_HASH := 81739900338ac7310992b76941ffb53d68ac66a2154b8e5e7d09b3640ad739ad/g" feeds/mimic/net/mimic/Makefile
+sed -i "s/CHECKSUM_HACK=kprobe/CHECKSUM_HACK=kfunc/g" feeds/mimic/net/mimic/Makefile
+sed -i -e '/COMPAT_LINUX_6_6=1$/{N;s/\\\n.*COMPAT_LINUX_6_6=1//}' \
+       -e '/COMPAT_LINUX_6_6=1 \\/d' \
+       feeds/mimic/net/mimic/Makefile
+echo "[mimic] Makefile after modifying: "
+cat feeds/mimic/net/mimic/Makefile
