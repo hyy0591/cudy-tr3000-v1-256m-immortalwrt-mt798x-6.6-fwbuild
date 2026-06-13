@@ -27,11 +27,9 @@ else
 fi
 sed -i "s/PKG_VERSION :=.*/PKG_VERSION := 0.7.1.20260615/g" feeds/mimic/net/mimic/Makefile
 sed -i "s/PKG_RELEASE :=.*/PKG_RELEASE := 1/g" feeds/mimic/net/mimic/Makefile
-sed -i "s/PKG_SOURCE_VERSION :=.*/PKG_SOURCE_VERSION := 96e0a316ec9b0b971866edada7bb3ccefe5a2d84/g" feeds/mimic/net/mimic/Makefile
+sed -i "s/commit :=.*/commit := 96e0a316ec9b0b971866edada7bb3ccefe5a2d84/g" feeds/mimic/net/mimic/Makefile
 sed -i "s/PKG_HASH := .*/PKG_HASH := 81739900338ac7310992b76941ffb53d68ac66a2154b8e5e7d09b3640ad739ad/g" feeds/mimic/net/mimic/Makefile
 sed -i "s/CHECKSUM_HACK=kprobe/CHECKSUM_HACK=kfunc/g" feeds/mimic/net/mimic/Makefile
-sed -i -e '/COMPAT_LINUX_6_6=1$/{N;s/\\\n.*COMPAT_LINUX_6_6=1//}' \
-       -e '/COMPAT_LINUX_6_6=1 \\/d' \
-       feeds/mimic/net/mimic/Makefile
+sed -i ':a;N;$!ba;s/\\\s*\n\s*COMPAT_LINUX_6_6=1//g' feeds/mimic/net/mimic/Makefile
 echo "[mimic] Makefile after modifying: "
 cat feeds/mimic/net/mimic/Makefile
